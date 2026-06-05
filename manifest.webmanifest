@@ -1,0 +1,17 @@
+{
+  "name": "番茄伙伴",
+  "short_name": "番茄伙伴",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fbfaf6",
+  "theme_color": "#ffd66b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+# Local OS/editor metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+.vscode/
+.idea/
+
+# Dependency and package-manager caches
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+
+# Build and generated output
+dist/
+build/
+out/
+coverage/
+.cache/
+.parcel-cache/
+.vite/
+
+# Logs and runtime diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and local-only config
+.env
+.env.*
+!.env.example
+
+# Local preview screenshots generated during UI iteration
+preview*.png
+preview*.jpg
+preview*.jpeg
+preview*.webp
+
+# Local design/reference source assets not used by the app
+assets/reference-*
