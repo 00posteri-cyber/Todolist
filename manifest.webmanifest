@@ -1,6 +1,6 @@
 {
-  "name": "番茄伙伴",
-  "short_name": "番茄伙伴",
+  "name": "FocusDog",
+  "short_name": "FocusDog",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#fbfaf6",
