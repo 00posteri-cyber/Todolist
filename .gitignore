@@ -40,3 +40,8 @@ preview*.webp
 
 # Local design/reference source assets not used by the app
 assets/reference-*
+assets/dog/
+assets/mascot/source-*
+assets/mascot/*_256.png
+assets/mascot/*_512.png
+assets/mascot/*_1024.png

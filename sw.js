@@ -1,13 +1,18 @@
-const CACHE_NAME = "focusdog-v13";
+const CACHE_NAME = "focusdog-v25";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=13",
-  "./app.js?v=13",
+  "./styles.css?v=22",
+  "./app.js?v=25",
   "./manifest.webmanifest",
   "./assets/app-icon.svg",
   "./assets/focus-dashboard-bg.png",
-  "./assets/dog-mascot.png?v=2",
+  "./assets/mascot/dog_happy.png?v=4",
+  "./assets/mascot/dog_focus.png?v=4",
+  "./assets/mascot/dog_sleep.png?v=4",
+  "./assets/mascot/dog_celebrate.png?v=4",
+  "./assets/mascot/dog_money.png?v=4",
+  "./assets/mascot/dog_empty.png?v=4",
 ];
 
 self.addEventListener("install", (event) => {

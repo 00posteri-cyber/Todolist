@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#FFB800" />
+    <meta name="theme-color" content="#F6C948" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="FocusDog" />
     <title>FocusDog</title>
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="icon" href="assets/app-icon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css?v=13" />
+    <link rel="stylesheet" href="styles.css?v=22" />
   </head>
   <body>
     <div class="phone-shell">
@@ -23,14 +23,17 @@
           <header class="page-header">
             <div>
               <p class="eyebrow">FocusDog</p>
-              <h1>Hi，朋友 👋</h1>
-              <p>大黄狗陪你把专注养成习惯。</p>
+              <h1>Hi，朋友</h1>
+              <p>专注是通往梦想的桥梁。</p>
             </div>
-            <button class="icon-circle" data-jump="checkins" aria-label="专注统计"><i data-lucide="bar-chart-3"></i></button>
+            <div class="header-actions">
+              <button class="icon-circle" data-jump="checkins" aria-label="专注统计"><i data-lucide="bar-chart-3"></i></button>
+              <button class="icon-circle" id="themeToggle" aria-label="切换深色模式"><i data-lucide="moon"></i></button>
+            </div>
           </header>
 
           <section class="dog-hero">
-            <img src="assets/dog-mascot.png?v=2" alt="大黄狗" />
+            <img id="dogMascot" src="assets/mascot/dog_happy.png?v=4" alt="朋友" />
           </section>
 
           <section class="tomato-focus-card">
@@ -39,8 +42,11 @@
               <button aria-label="说明"><i data-lucide="help-circle"></i></button>
             </div>
             <strong id="timeLeft">25:00</strong>
-            <div class="timer-scale">
-              <span>30</span><span>25</span><span>20</span>
+            <div class="timer-scale-slider" id="timeScaleSlider" role="slider" aria-label="时间刻度滑动选择器" aria-valuemin="5" aria-valuemax="120" aria-valuenow="25" tabindex="0">
+              <div class="scale-window">
+                <div class="scale-track" id="timeScaleTrack"></div>
+              </div>
+              <div class="scale-pointer" aria-hidden="true"></div>
             </div>
           </section>
 
@@ -57,8 +63,10 @@
               <input id="customMinutes" type="number" min="1" max="240" step="1" value="25" inputmode="numeric" />
               <button type="submit">应用</button>
             </form>
-            <button class="secondary-button" id="completePomodoro"><i data-lucide="coffee"></i><span>完成并短休息</span></button>
-            <button class="reset-button" id="resetTimer" aria-label="重置"><i data-lucide="rotate-ccw"></i></button>
+            <div class="focus-actions">
+              <button class="secondary-button" id="completePomodoro"><i data-lucide="coffee"></i><span>完成并短休息</span></button>
+              <button class="reset-button" id="resetTimer" aria-label="重置"><i data-lucide="rotate-ccw"></i></button>
+            </div>
           </section>
 
           <section class="summary-card">
@@ -79,39 +87,48 @@
             <div>
               <p class="eyebrow">Task</p>
               <h2>任务</h2>
-              <p>创建任务，设置优先级，减少拖延。</p>
+              <p>先选优先级，再把今天推进一点点。</p>
             </div>
           </header>
-          <form class="task-form" id="planForm">
-            <input id="planTitle" type="text" placeholder="新增任务" autocomplete="off" />
-            <input id="planDate" type="date" />
-            <select id="planPriority" aria-label="优先级">
-              <option value="高">高</option>
-              <option value="中" selected>中</option>
-              <option value="低">低</option>
-            </select>
-            <button type="submit" class="primary-mini" aria-label="新增任务"><i data-lucide="plus"></i></button>
-          </form>
           <div class="segmented-tabs" aria-label="任务筛选">
             <button class="selected" data-filter="all">全部</button>
             <button data-filter="today">今天</button>
             <button data-filter="done">完成</button>
           </div>
           <div class="list" id="planList"></div>
+          <form class="task-form" id="planForm">
+            <input id="planTitle" type="text" placeholder="新建任务" autocomplete="off" />
+            <input id="planDate" type="date" />
+            <select id="planPriority" aria-label="优先级">
+              <option value="高">高</option>
+              <option value="中" selected>中</option>
+              <option value="低">低</option>
+            </select>
+            <button type="submit" class="primary-mini" aria-label="新建任务"><i data-lucide="plus"></i></button>
+          </form>
         </section>
 
         <section class="app-section" id="checkins">
           <header class="page-header compact">
             <div>
               <p class="eyebrow">Growth</p>
-              <h2>专注统计</h2>
-              <p>看见今日、本周和连续专注。</p>
+              <h2>成长小屋</h2>
+              <p>朋友会陪你升级、攒 EXP、保持连续专注。</p>
             </div>
           </header>
-          <section class="growth-stats">
-            <div><span>今日专注</span><strong><b id="todayFocusStat">0</b> 分钟</strong></div>
-            <div><span>本周专注</span><strong><b id="weekFocusStat">0</b> 分钟</strong></div>
-            <div><span>连续天数</span><strong><b id="streakStat">0</b> 天</strong></div>
+          <section class="dog-home">
+            <img src="assets/mascot/dog_celebrate.png?v=4" alt="庆祝中的朋友" />
+            <div>
+              <span>当前等级</span>
+              <strong>Lv.<b id="growthLevel">1</b></strong>
+              <small><b id="growthExp">0</b> / 100 EXP</small>
+              <div class="exp-track"><span id="growthExpBar"></span></div>
+            </div>
+          </section>
+          <section class="achievement-grid">
+            <article><i data-lucide="flame"></i><span>连续专注</span><strong><b id="streakStat">0</b> 天</strong></article>
+            <article><i data-lucide="timer"></i><span>今日专注</span><strong><b id="todayFocusStat">0</b> 分钟</strong></article>
+            <article><i data-lucide="calendar-days"></i><span>本周专注</span><strong><b id="weekFocusStat">0</b> 分钟</strong></article>
           </section>
           <section class="chart-card">
             <div class="chart-header">
@@ -132,13 +149,13 @@
             <div>
               <p class="eyebrow">Profile</p>
               <h2>我的</h2>
-              <p>等级、EXP、会员中心和设置。</p>
+              <p>会员、统计、设置和反馈都在这里。</p>
             </div>
           </header>
           <section class="profile-card">
-            <div class="profile-avatar"><img src="assets/dog-mascot.png?v=2" alt="大黄狗" /></div>
+            <div class="profile-avatar"><img src="assets/mascot/dog_money.png?v=4" alt="朋友" /></div>
             <div class="profile-copy">
-              <strong>大黄狗 Lv.<span id="levelValue">1</span></strong>
+              <strong>朋友 Lv.<span id="levelValue">1</span></strong>
               <span id="membershipStatus">免费版</span>
               <div class="exp-track"><span id="expBar"></span></div>
               <small><b id="expValue">0</b> / 100 EXP</small>
@@ -157,6 +174,7 @@
             </article>
           </section>
           <section class="settings-list">
+            <button id="profileThemeToggle"><i data-lucide="moon"></i><span>深色模式</span><i data-lucide="chevron-right"></i></button>
             <button><i data-lucide="settings"></i><span>设置</span><i data-lucide="chevron-right"></i></button>
             <button><i data-lucide="message-circle"></i><span>反馈</span><i data-lucide="chevron-right"></i></button>
           </section>
@@ -164,14 +182,15 @@
       </main>
 
       <nav class="bottom-tabs" aria-label="底部导航">
-        <a href="#timer" class="active"><span class="tab-icon">🍅</span><span>Focus</span></a>
-        <a href="#plans"><span class="tab-icon">📋</span><span>Task</span></a>
-        <a href="#checkins"><span class="tab-icon">🌱</span><span>Growth</span></a>
-        <a href="#subscriptions"><span class="tab-icon">🐶</span><span>Profile</span></a>
+        <a href="#timer" class="active"><i data-lucide="timer"></i><span>Focus</span></a>
+        <a href="#plans"><i data-lucide="clipboard-list"></i><span>Task</span></a>
+        <a href="#checkins"><i data-lucide="sprout"></i><span>Growth</span></a>
+        <a href="#subscriptions"><i data-lucide="user-round"></i><span>Profile</span></a>
       </nav>
+      <div class="reward-layer" id="rewardLayer" aria-hidden="true"></div>
     </div>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-    <script src="app.js?v=13"></script>
+    <script src="app.js?v=25"></script>
   </body>
 </html>

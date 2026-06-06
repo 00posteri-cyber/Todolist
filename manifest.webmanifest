@@ -3,8 +3,8 @@
   "short_name": "FocusDog",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#fbfaf6",
-  "theme_color": "#ffd66b",
+  "background_color": "#FFF7DE",
+  "theme_color": "#F6C948",
   "orientation": "portrait",
   "icons": [
     {
